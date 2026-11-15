@@ -1,0 +1,9 @@
+{
+  "routes": ["/requests"],
+  "nav": [
+    {
+      "href": "/requests",
+      "label": "Requests"
+    }
+  ]
+}

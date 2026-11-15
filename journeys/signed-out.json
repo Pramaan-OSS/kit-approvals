@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "id": "signed-out",
+      "label": "Signed-out visitors see sign-in and no requests.",
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "expectText": "Sign in"
+        },
+        {
+          "goto": "/requests"
+        },
+        {
+          "expectText": "Sign in to continue."
+        }
+      ]
+    }
+  ],
+  "names": {}
+}

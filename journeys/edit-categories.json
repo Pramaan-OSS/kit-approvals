@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "id": "edit-categories",
+      "label": "Adds and removes an unused category.",
+      "steps": [
+        {
+          "enterAs": "owner"
+        },
+        {
+          "goto": "/settings"
+        },
+        {
+          "fill": "New category name",
+          "value": "Checklist supplies"
+        },
+        {
+          "click": "Add category"
+        },
+        {
+          "expectText": "Rename Checklist supplies"
+        },
+        {
+          "click": "Remove Checklist supplies"
+        },
+        {
+          "expectAbsent": "Rename Checklist supplies"
+        }
+      ]
+    }
+  ],
+  "names": {}
+}

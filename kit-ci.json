@@ -1,0 +1,99 @@
+{
+  "kit": "approvals",
+  "version": "0.1.0",
+  "digest": "sha256:c2c1951a0d64bfb315092a9c6a25dc70b78e30c9ec484b7eaac54f6f9fc82b04",
+  "contract": "1",
+  "green": false,
+  "ranAt": "2026-11-14T05:28:37.710Z",
+  "run": null,
+  "gates": [
+    {
+      "id": "contract",
+      "ok": true,
+      "evidence": "97 files, 5 migrations, 11 journeys"
+    },
+    {
+      "id": "licence",
+      "ok": true,
+      "evidence": "MIT; derived, written by person"
+    },
+    {
+      "id": "secrets",
+      "ok": true,
+      "evidence": "Scanned 99 source files for credential-shaped material."
+    },
+    {
+      "id": "packages",
+      "ok": true,
+      "evidence": "3 packages beyond the starter's, every one under an allowed licence"
+    },
+    {
+      "id": "install",
+      "ok": true,
+      "evidence": "Frozen install with scripts and pnpmfile disabled; Node 24.18.0, pnpm 11.15.1."
+    },
+    {
+      "id": "migrations",
+      "ok": true,
+      "evidence": "Five migrations applied to fresh postgres:16-alpine capped at 192 MiB and 0.5 CPU; no memory kill."
+    },
+    {
+      "id": "check",
+      "ok": true,
+      "evidence": "Native local typecheck and production build passed. Two workers; combined check peak 1220 MiB in 6 seconds."
+    },
+    {
+      "id": "lint",
+      "ok": true,
+      "evidence": "Clean git archive lint passed with two inherited warnings."
+    },
+    {
+      "id": "tests",
+      "ok": true,
+      "evidence": "22 database tests passed. Full pnpm test peak 523 MiB, below 819 MiB."
+    },
+    {
+      "id": "draft",
+      "ok": true,
+      "evidence": "Native draft peak 935 MiB; first answer 3 seconds."
+    },
+    {
+      "id": "browser",
+      "ok": true,
+      "evidence": "26 headless checks passed, all six ships-working journeys; app peak 209 MiB."
+    },
+    {
+      "id": "owner-pass",
+      "ok": true,
+      "evidence": "Replay, project binding, expiry and forged passes refused; owner credentials and invited role sign-in checked."
+    },
+    {
+      "id": "blocks",
+      "ok": true,
+      "evidence": "Three pinned block source hashes verified; 15 frozen files byte-identical."
+    },
+    {
+      "id": "platform-ci",
+      "ok": false,
+      "evidence": "Pending by instruction: full container kit CI runs in product-loop on pinning. Native local gates are recorded in DONE.md and .scratch/KIT-DONE.md; no full container run attempted."
+    }
+  ],
+  "measured": {
+    "on": "2026-11-14",
+    "by": "person",
+    "draft": {
+      "peakMiB": 935,
+      "limitMiB": 2560,
+      "firstAnswerSeconds": 3
+    },
+    "verifier": {
+      "peakMiB": 1220,
+      "limitMiB": 2048,
+      "seconds": 6
+    },
+    "browser": {
+      "peakMiB": 209,
+      "limitMiB": 1024
+    }
+  }
+}

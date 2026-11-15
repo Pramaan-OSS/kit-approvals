@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "id": "invite-person",
+      "label": "Invites an employee with a single-use link.",
+      "steps": [
+        {
+          "enterAs": "owner"
+        },
+        {
+          "goto": "/settings"
+        },
+        {
+          "fill": "Invite email",
+          "value": "checklist-person@example.test"
+        },
+        {
+          "click": "Invite person"
+        },
+        {
+          "expectText": "Invite ready for checklist-person@example.test."
+        }
+      ]
+    }
+  ],
+  "names": {}
+}

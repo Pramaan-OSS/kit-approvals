@@ -1,0 +1,212 @@
+{
+  "id": "approvals",
+  "version": "0.1.0",
+  "title": "Requests and approvals",
+  "summary": "Employees submit expense, purchase and leave requests. Approvers decide in order; finance records expense payouts. Every request keeps a decision history.",
+  "category": "business-operations",
+  "stack": {
+    "contract": "1",
+    "template": "data",
+    "next": "16.3.6",
+    "react": "19.3.0",
+    "node": "24.18.0",
+    "packageManager": "pnpm@11.15.1"
+  },
+  "licence": "MIT",
+  "provenance": {
+    "mode": "derived",
+    "starter": "Pramaan-Dev/product-loop@370419379645405019af029fa08a75680ad75c8b",
+    "derivedFrom": ["Pramaan-Dev/product-loop@370419379645405019af029fa08a75680ad75c8b"],
+    "upstreamNotices": ["NOTICE.md"],
+    "writtenBy": "person"
+  },
+  "measured": {
+    "on": "2026-11-14",
+    "by": "person",
+    "draft": {
+      "peakMiB": 935,
+      "limitMiB": 2560,
+      "firstAnswerSeconds": 3
+    },
+    "verifier": {
+      "peakMiB": 1220,
+      "limitMiB": 2048,
+      "seconds": 6
+    },
+    "browser": {
+      "peakMiB": 209,
+      "limitMiB": 1024
+    }
+  },
+  "entryPoints": [
+    {
+      "route": "/",
+      "file": "app/page.tsx",
+      "audience": "visitor",
+      "summary": "Sign in with an invited account."
+    },
+    {
+      "route": "/invite",
+      "file": "app/invite/page.tsx",
+      "audience": "visitor",
+      "summary": "Accept a single-use invitation."
+    },
+    {
+      "route": "/requests",
+      "file": "app/requests/page.tsx",
+      "audience": "employee",
+      "summary": "Submit and track requests within your role."
+    },
+    {
+      "route": "/settings",
+      "file": "app/settings/page.tsx",
+      "audience": "owner",
+      "summary": "Invite people, edit lists and fields, routes and leave allowances."
+    },
+    {
+      "route": "/owner",
+      "file": "app/owner/page.tsx",
+      "audience": "owner",
+      "summary": "Choose owner sign-in credentials."
+    },
+    {
+      "route": "/password-reset",
+      "file": "app/password-reset/page.tsx",
+      "audience": "visitor",
+      "summary": "Request a reset when email is enabled."
+    },
+    {
+      "route": "/reset-password",
+      "file": "app/reset-password/page.tsx",
+      "audience": "visitor",
+      "summary": "Choose a password using an emailed reset link."
+    }
+  ],
+  "roles": {
+    "owner": {
+      "source": "owner-pass",
+      "summary": "Invites all roles, edits settings and sees every request."
+    },
+    "employee": {
+      "source": "added-by-owner",
+      "summary": "Submits and sees only their own requests."
+    },
+    "approver": {
+      "source": "added-by-owner",
+      "summary": "Decides routed requests in order and can submit their own."
+    },
+    "finance": {
+      "source": "added-by-owner",
+      "summary": "Sees approved expenses, records payouts and exports."
+    },
+    "visitor": {
+      "source": "anonymous",
+      "summary": "Sees sign-in, invite and password reset only."
+    }
+  },
+  "journeys": [
+    {
+      "id": "owner-settings",
+      "role": "owner",
+      "summary": "Opens owner settings with a one-time pass.",
+      "status": "ships-working",
+      "checklist": "journeys/owner-settings.json"
+    },
+    {
+      "id": "invite-person",
+      "role": "owner",
+      "summary": "Invites an employee with a single-use link.",
+      "status": "ships-working",
+      "checklist": "journeys/invite-person.json"
+    },
+    {
+      "id": "edit-categories",
+      "role": "owner",
+      "summary": "Adds and removes an unused category.",
+      "status": "ships-working",
+      "checklist": "journeys/edit-categories.json"
+    },
+    {
+      "id": "request-draft",
+      "role": "owner",
+      "summary": "Creates a request with a server-calculated total.",
+      "status": "ships-working",
+      "checklist": "journeys/request-draft.json"
+    },
+    {
+      "id": "signed-out",
+      "role": "visitor",
+      "summary": "Signed-out visitors see sign-in and no requests.",
+      "status": "ships-working",
+      "checklist": "journeys/signed-out.json"
+    },
+    {
+      "id": "password-reset-off",
+      "role": "visitor",
+      "summary": "Explains how password reset depends on email.",
+      "status": "ships-working",
+      "checklist": "journeys/password-reset-off.json"
+    },
+    {
+      "id": "receipt-upload",
+      "role": "employee",
+      "summary": "Uploads and downloads a private receipt through the file module.",
+      "status": "needs-capability",
+      "capability": "file_storage"
+    },
+    {
+      "id": "lifecycle-emails",
+      "role": "approver",
+      "summary": "Sends submitted, needs-your-approval and decided notices through the email module.",
+      "status": "needs-capability",
+      "capability": "email"
+    },
+    {
+      "id": "ordered-expense-payout",
+      "role": "employee",
+      "summary": "Submits an over-threshold expense, two approvers decide in order and finance records payout.",
+      "status": "not-testable",
+      "reason": "This journey crosses separately signed-in accounts or reads uploaded/downloaded bytes; the local headless walk and database tests exercise it."
+    },
+    {
+      "id": "changes-rejection-leave",
+      "role": "approver",
+      "summary": "Requests changes or rejects with a reason, and enforces annual leave balances.",
+      "status": "not-testable",
+      "reason": "This journey crosses separately signed-in accounts or reads uploaded/downloaded bytes; the local headless walk and database tests exercise it."
+    },
+    {
+      "id": "employee-csv",
+      "role": "owner",
+      "summary": "Imports employee invitations and exports formula-escaped approved expenses.",
+      "status": "not-testable",
+      "reason": "This journey crosses separately signed-in accounts or reads uploaded/downloaded bytes; the local headless walk and database tests exercise it."
+    }
+  ],
+  "capabilities": [
+    "accounts",
+    "server_data",
+    "roles",
+    "email",
+    "file_storage",
+    "file_input",
+    "download"
+  ],
+  "notIncluded": [
+    "Email and receipts need their platform modules, off by default. The inviter can share one-time links when email is unavailable.",
+    "One company and one currency per app; no currency conversion, tax or payroll calculation.",
+    "Finance records a payout already made elsewhere; this app does not move money.",
+    "Leave uses whole days per calendar year; no half days, carry-over or holiday calendar.",
+    "No deleting requests or changing a final decision. Returned requests restart their approval route and keep previous rounds.",
+    "No public signup or signed-in password change for invited people.",
+    "Queued emails retry on request activity or the owner retry button, not a background schedule.",
+    "Employee CSV imports at most fifty email addresses as invitations; they become accounts when accepted.",
+    "Live deployment needs the platform live database."
+  ],
+  "protectedPaths": [
+    "lib/accounts.ts",
+    "lib/approvals/access.ts",
+    "lib/approvals/invites.ts",
+    "lib/approvals/data.ts"
+  ]
+}

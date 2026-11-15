@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "id": "request-draft",
+      "label": "Creates a request with a server-calculated total.",
+      "steps": [
+        {
+          "enterAs": "owner"
+        },
+        {
+          "goto": "/requests"
+        },
+        {
+          "fill": "Title",
+          "value": "Checklist expenses"
+        },
+        {
+          "fill": "Amount",
+          "value": "12.50"
+        },
+        {
+          "fill": "Business purpose",
+          "value": "Office supplies"
+        },
+        {
+          "click": "Save draft"
+        },
+        {
+          "expectText": "Total 12.50"
+        },
+        {
+          "expectText": "Draft"
+        }
+      ]
+    }
+  ],
+  "names": {}
+}
